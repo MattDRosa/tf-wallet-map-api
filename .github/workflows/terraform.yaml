@@ -47,7 +47,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-east-1
           TERRAFORM_VARS_URI: ${{ secrets.TERRAFORM_VARS_URI }}
-        run: aws s3 cp ${{ secrets.TERRAFORM_VARS_URI }} env\prod\terraform.tfvars
+        run: aws s3 cp ${{ secrets.TERRAFORM_VARS_URI }} env/prod/terraform.tfvars
         working-directory: infra
 
       - name: Terraform Validate
@@ -104,7 +104,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-east-1
           TERRAFORM_VARS_URI: ${{ secrets.TERRAFORM_VARS_URI }}
-        run: aws s3 cp ${{ secrets.TERRAFORM_VARS_URI }} env\prod\terraform.tfvars
+        run: aws s3 cp ${{ secrets.TERRAFORM_VARS_URI }} env/prod/terraform.tfvars
         working-directory: infra
 
       - name: Terraform Validate
