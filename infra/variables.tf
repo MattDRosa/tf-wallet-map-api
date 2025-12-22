@@ -31,7 +31,7 @@ variable "dynamodb_billing_mode" {
 
 variable "dynamodb_table_attributes" {
   description = "Table attributes"
-  type        = list(
+  type = list(
     object(
       {
         name = string
