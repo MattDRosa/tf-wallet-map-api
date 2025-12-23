@@ -1,3 +1,11 @@
+module "api_gateway" {
+  source = "./api_gateway"
+
+  api_name          = var.api_name
+  api_endpoint_type = var.api_endpoint_type
+  api_stage_name    = var.api_stage_name
+}
+
 module "database" {
   source = "./database"
 
