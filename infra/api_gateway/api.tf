@@ -10,11 +10,17 @@ resource "aws_api_gateway_rest_api" "wallet_map_api" {
     paths = {
       "/example" = {
         head = {
-          summary     = "HEAD example"
-          description = "HEAD method with JSON body"
-          responses = {
-            "200" = {
-              description = "Success"
+          x-amazon-apigateway-integration = {
+            type                 = "mock"
+            httpMethod           = "HEAD"
+            passthroughBehavior = "when_no_match"
+            responses = {
+              default = {
+                statusCode = "200"
+                responseParameters = {
+                  "method.response.header.Content-Type" = "'application/json'"
+                }
+              }
             }
           }
         }
