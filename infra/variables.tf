@@ -58,4 +58,4 @@ variable "dynamodb_table_hash_key" {
 #   description = "The projection type for the global secondary index"
 #   type        = string
 #   default     = "ALL"
-}
+# }
