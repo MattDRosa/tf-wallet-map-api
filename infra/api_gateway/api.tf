@@ -26,8 +26,12 @@ resource "aws_api_gateway_rest_api" "wallet_map_api" {
     types = ["${var.api_endpoint_type}"]
   }
 
-  lifecycle {
-    ignore_changes = [ body ]
+  # lifecycle {
+  #   ignore_changes = [ body ]
+  # }
+
+  tags = {
+    Name = var.api_name
   }
 }
 
