@@ -1,5 +1,5 @@
-resource "aws_api_gateway_rest_api" "example" {
-  name = "example-api"
+resource "aws_api_gateway_rest_api" "wallet_map_api" {
+  name = var.api_name
 
   body = jsonencode({
     openapi = "3.0.0"
