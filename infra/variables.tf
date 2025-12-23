@@ -11,9 +11,16 @@ variable "api_name" {
   type        = string
 }
 
-variable "api_protocol_type" {
-  description = "API Gateway type"
+variable "api_endpoint_type" {
+  description = "API Gateway endpoint type"
   type        = string
+  default     = "REGIONAL"
+}
+
+variable "api_stage_name" {
+  description = "API Gateway stage name"
+  type        = string
+  default     = "prod"
 }
 
 ### DYNAMODB VARIABLES ###
