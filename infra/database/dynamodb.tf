@@ -16,5 +16,4 @@ resource "aws_dynamodb_table" "customer_portfolios" {
     hash_key        = var.dynamodb_gsi_hash_key
     projection_type = var.dynamodb_gsi_projection_type
   }
-
 }
