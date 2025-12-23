@@ -45,3 +45,17 @@ variable "dynamodb_table_hash_key" {
   description = "The hash key for the DynamoDB table"
   type        = string
 }
+
+variable "dynamodb_gsi_name" {
+  description = "The name of the global secondary index"
+  type        = string
+}
+variable "dynamodb_gsi_hash_key" {
+  description = "The hash key for the global secondary index"
+  type        = string
+}
+variable "dynamodb_gsi_projection_type" {
+  description = "The projection type for the global secondary index"
+  type        = string
+  default     = "ALL"
+}
