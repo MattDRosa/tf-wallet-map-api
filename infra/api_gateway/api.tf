@@ -24,3 +24,31 @@ resource "aws_api_gateway_method" "head_example" {
   http_method   = "HEAD"
   authorization = "NONE"
 }
+
+resource "aws_api_gateway_resource" "example_resource" {
+  path_part = "example"
+  parent_id = aws_api_gateway_rest_api.wallet_map_api.root_resource_id
+  rest_api_id = aws_api_gateway_rest_api.wallet_map_api.id
+}
+
+resource "aws_api_gateway_integration" "example_integration" {
+  rest_api_id = aws_api_gateway_rest_api.wallet_map_api.id
+  resource_id = aws_api_gateway_resource.example.id
+  http_method = aws_api_gateway_method.head_example.http_method
+  type                 = "MOCK"
+  cache_key_parameters = ["method.request.path.param"]
+  cache_namespace      = "foobar"
+  timeout_milliseconds = 29000
+
+  request_parameters = {
+    "integration.request.header.X-Authorization" = "'static'"
+  }
+
+  request_templates = {
+    "application/xml" = <<EOF
+{
+   "body" : $input.json('$')
+}
+EOF
+  }
+}
