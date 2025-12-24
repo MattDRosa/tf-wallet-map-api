@@ -22,6 +22,6 @@ resource "aws_api_gateway_method" "head_example" {
   authorization = "NONE"
 
   lifecycle {
-    ignore_changes = [ all ]
+    ignore_changes = [ "all" ]
   }
 }
