@@ -1,43 +1,26 @@
 resource "aws_api_gateway_rest_api" "wallet_map_api" {
   name = var.api_name
-
-  body = jsonencode({
-    openapi = "3.0.0"
-    info = {
-      title   = "Example API"
-      version = "1.0"
-    }
-    paths = {
-      "/example" = {
-        head = {
-          x-amazon-apigateway-integration = {
-            type                 = "mock"
-            httpMethod           = "HEAD"
-            passthroughBehavior = "when_no_match"
-            responses = {
-              default = {
-                statusCode = "200"
-                responseParameters = {
-                  "method.response.header.Content-Type" = "'application/json'"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  })
-
   endpoint_configuration {
     types = ["${var.api_endpoint_type}"]
   }
 
-  # lifecycle {
-  #   ignore_changes = [ body ]
-  # }
-
+  lifecycle {
+    ignore_changes = [ body ]
+  }
   tags = {
     Name = var.api_name
   }
 }
 
+resource "aws_api_gateway_resource" "example" {
+  rest_api_id = aws_api_gateway_rest_api.wallet_map_api.id
+  parent_id   = aws_api_gateway_rest_api.wallet_map_api.root_resource_id
+  path_part   = "example"
+}
+
+resource "aws_api_gateway_method" "head_example" {
+  rest_api_id   = aws_api_gateway_rest_api.wallet_map_api.id
+  resource_id   = aws_api_gateway_resource.example.id
+  http_method   = "HEAD"
+  authorization = "NONE"
+}
