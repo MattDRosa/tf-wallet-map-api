@@ -12,15 +12,9 @@ resource "aws_api_gateway_rest_api" "wallet_map_api" {
   }
 }
 
-resource "aws_api_gateway_resource" "example" {
-  rest_api_id = aws_api_gateway_rest_api.wallet_map_api.id
-  parent_id   = aws_api_gateway_rest_api.wallet_map_api.root_resource_id
-  path_part   = "example"
-}
-
 resource "aws_api_gateway_method" "head_example" {
   rest_api_id   = aws_api_gateway_rest_api.wallet_map_api.id
-  resource_id   = aws_api_gateway_resource.example.id
+  resource_id   = aws_api_gateway_resource.example_resource.id
   http_method   = "HEAD"
   authorization = "NONE"
 }
@@ -33,7 +27,7 @@ resource "aws_api_gateway_resource" "example_resource" {
 
 resource "aws_api_gateway_integration" "example_integration" {
   rest_api_id = aws_api_gateway_rest_api.wallet_map_api.id
-  resource_id = aws_api_gateway_resource.example.id
+  resource_id = aws_api_gateway_resource.example_resource.id
   http_method = aws_api_gateway_method.head_example.http_method
   type                 = "MOCK"
   timeout_milliseconds = 29000
